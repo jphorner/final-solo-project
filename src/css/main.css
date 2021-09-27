@@ -1,11 +1,9 @@
 /* This is an example of how to import a partial scss file*/
-@import '_variables';
-
 html {
   z-index: 1;
   height: 93vh;
-  border-top: 2rem solid $secondary-background;
-  border-bottom: 2rem solid $secondary-background;
+  border-top: 2rem solid #34e2ff;
+  border-bottom: 2rem solid #34e2ff;
 }
 
 body {
@@ -13,7 +11,7 @@ body {
   margin: 0px;
   margin-left: 1rem;
   margin-right: 1rem;
-  background: $primary-background;
+  background: #FFFFFF;
 }
 
 .logo-container {
@@ -22,11 +20,11 @@ body {
   height: 5rem;
   width: 5rem;
   object-fit: contain;
-  img {
-    position: static;
-    height: 5rem;
-    width: 5rem;
-  }
+}
+.logo-container img {
+  position: static;
+  height: 5rem;
+  width: 5rem;
 }
 
 footer {
@@ -35,3 +33,5 @@ footer {
   background-color: 2rem solid black;
   bottom: 0%;
 }
+
+/*# sourceMappingURL=main.css.map */

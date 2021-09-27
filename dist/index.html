@@ -7,10 +7,31 @@
   <title>Webpack Starter Kit</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <div class="logo-container">
+    <img src="./images/turing-logo.png" alt="turing logo">
+  </div>
+  <div class="dashboard-container">
+    <section class="dashboard" id="dashboard">
+      <header class="dashboard-header" id="dashboard">
+        <h1>Dashboard</h1>
+      </header>
+      <div class="booking-history-container" id="bookingHistoryContainer">
+        <section class="booking-history" id="bookingHistory">
+          <h2>Booking History</h2>
+          <section class="bookings-display" id="bookingsDisplay">
+          </section>
+        </section>
+        <div class="expenditures-container" id="expendituresContainer">
+          <section class="expenditures" id="expenditures">
+            <h2>Expenditures</h2>
+            <section class="expenditures-display" id="expenditures-display">
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
-
+  <footer>Test</footer>
 </body>
 </html>

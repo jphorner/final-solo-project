@@ -34,7 +34,7 @@ describe('Customer data', function() {
     expect(josh.bookings[0]).to.equal(testBooking);
   })
 
-  it('should share a matching user ID between Customer and Booking classes', () => {
+  it('should share a matching ID between Customer and Booking classes', () => {
     expect(josh.bookings[0].userID).to.equal(josh.id);
   })
 });

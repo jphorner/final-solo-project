@@ -2,8 +2,8 @@
 html {
   z-index: 1;
   height: 93vh;
-  border-top: 2rem solid #34e2ff;
-  border-bottom: 2rem solid #34e2ff;
+  border-top: 1rem solid #34e2ff;
+  border-bottom: 1rem solid #34e2ff;
 }
 
 body {
@@ -63,7 +63,7 @@ body {
   grid-template-columns: repeat(2, 35rem);
   grid-auto-rows: 35rem;
   margin: 2rem;
-  margin-top: 0rem;
+  margin-top: 1rem;
   margin-bottom: 0rem;
   padding: 1rem;
   padding-left: 2rem;
@@ -85,7 +85,7 @@ body {
 
 footer {
   position: static;
-  height: 2rem;
+  height: 1rem;
   background-color: 2rem solid black;
   bottom: 0%;
 }

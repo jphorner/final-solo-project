@@ -1,0 +1,97 @@
+/* This is an example of how to import a partial scss file*/
+html {
+  z-index: 1;
+  height: 93vh;
+  border-top: 1rem solid #34e2ff;
+  border-bottom: 1rem solid #34e2ff;
+}
+
+body {
+  height: 100%;
+  margin: 0px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background: #f9f9f9;
+  font-family: "Questrial", sans-serif;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 1rem;
+  padding-bottom: 0rem;
+  height: 5rem;
+  width: 5rem;
+  object-fit: contain;
+}
+.logo-container img {
+  position: static;
+  height: 3.8rem;
+  width: 3.8rem;
+  padding-right: 0.5rem;
+  padding-top: 0.4rem;
+}
+.logo-container .logo-text {
+  color: white;
+  background-color: #ff652d;
+  margin-top: 1rem;
+  padding-top: 0.3rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  border-radius: 0.5rem;
+}
+.logo-container .slogan {
+  position: absolute;
+  right: 5%;
+  color: #4C4D4F;
+  font-family: "Bebas Neue", cursive;
+  margin-bottom: 2rem;
+}
+
+.dashboard-text h1 {
+  margin: 0px;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+}
+
+.booking-history-container {
+  display: grid;
+  grid-template-columns: repeat(2, 35rem);
+  grid-auto-rows: 35rem;
+  margin: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 0rem;
+  padding: 1rem;
+  padding-left: 2rem;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px #4C4D4F;
+}
+.booking-history-container .booking-history {
+  border-right: 1px solid #4C4D4F;
+  padding-right: 2rem;
+}
+.booking-history-container .expenditures {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.booking-history-container h2 {
+  border-bottom: 1px solid #4C4D4F;
+  padding-bottom: 0.5rem;
+}
+
+footer {
+  position: static;
+  height: 1rem;
+  background-color: 2rem solid black;
+  bottom: 0%;
+}
+
+.dyslexic {
+  font-family: Helvetica;
+}
+
+/*# sourceMappingURL=main.css.map */

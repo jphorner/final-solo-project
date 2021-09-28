@@ -1,0 +1,118 @@
+/* This is an example of how to import a partial scss file*/
+@import '_variables';
+
+* {
+  // border: 1px solid blue;
+}
+
+html {
+  z-index: 1;
+  height: 93vh;
+  border-top: 1rem solid $secondary-background;
+  border-bottom: 1rem solid $secondary-background;
+}
+
+body {
+  height: 100%;
+  margin: 0px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background: $primary-background;
+  font-family: $primary-font;
+}
+
+// .background-image {
+//   z-index: -1;
+//   position: absolute;
+//   margin: -5rem;
+//   height: 93vh;
+//   opacity: 80%;
+// }
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 1rem;
+  padding-bottom: 0rem;
+  height: 5rem;
+  width: 5rem;
+  object-fit: contain;
+
+  img {
+    position: static;
+    height: 3.8rem;
+    width: 3.8rem;
+    padding-right: .5rem;
+    padding-top: .4rem;
+  }
+
+  .logo-text {
+    color: white;
+    background-color: #ff652d;
+    margin-top: 1rem;
+    padding-top: .3rem;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    border-radius: .5rem;
+  }
+
+  .slogan {
+    position: absolute;
+    right: 5%;
+    color: $turing-gray;
+    font-family: $secondary-font;
+    margin-bottom: 2rem;
+  }
+}
+
+.dashboard-text {
+  h1 {
+    margin: 0px;
+    margin-bottom: .5rem;
+  }
+}
+
+.dashboard-container {
+  display: flex;
+  // flex-direction: row;
+  justify-content: center;
+}
+
+.booking-history-container {
+  display: grid;
+  grid-template-columns: repeat(2, 35rem);
+  grid-auto-rows: 35rem;
+  margin: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 0rem;
+  padding: 1rem;
+  padding-left: 2rem;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px $turing-gray;
+
+  .booking-history {
+    border-right: 1px solid $turing-gray;
+    padding-right: 2rem;
+  }
+
+  .expenditures {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  h2 {
+    border-bottom: 1px solid $turing-gray;
+    padding-bottom: .5rem;
+  }
+}
+
+footer {
+  position: static;
+  height: 1rem;
+  background-color: 2rem solid black;
+  bottom: 0%;
+}
+
+.dyslexic {
+  font-family: Helvetica;
+}

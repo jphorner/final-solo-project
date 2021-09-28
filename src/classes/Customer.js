@@ -1,5 +1,3 @@
-import Hotel from './Hotel.js';
-
 class Customer {
   constructor(id, name) {
     this.id = id;

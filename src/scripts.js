@@ -3,7 +3,7 @@
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-import { getAllCustomers, getAllRooms, getAllBookings } from './apiCalls';
+import { getAllCustomers, getAllRooms, getAllBookings, addNewBooking } from './apiCalls';
 import Customer from './classes/Customer.js';
 import Room from './classes/Room.js';
 import Booking from './classes/Booking.js';
@@ -17,6 +17,8 @@ let returnedData = [];
 let allCustomers = [];
 let allRooms = [];
 let allBookings = [];
+let selectedDate;
+let currentUser;
 
 const {
   dashboardContainer,
@@ -24,13 +26,16 @@ const {
   bookingHistoryContainer,
   bookingsDisplay,
   expendituresDisplay,
-  dateSelection
+  dateSelection,
+  usernameField,
+  passwordField
 } = domUpdates;
 
 window.addEventListener('load', getData);
 dateSelection.addEventListener('click', bookARoom);
 roomSearch.addEventListener('click', searchForRooms);
 availableRoomsDisplay.addEventListener('click', bookRoom);
+loginButton.addEventListener('click', login);
 
 /// FUNCTIONS ///
 
@@ -76,6 +81,7 @@ function instantiateClasses() {
 }
 
 function populatePastBookings(bookings, rooms) {
+  bookingsDisplay.innerHTML = ``;
   let testBooking1 = {id: "5fwrgu4i7k55hl6yl", userID: 44, date: "2020/01/30", roomNumber: 24, roomServiceCharges: null}
   let pastBookings = bookings.filter( booking => booking.date < "2020/02/01");
   let bookingsToPopulate = [pastBookings[0], pastBookings[1], pastBookings[2], pastBookings[3]];
@@ -122,7 +128,7 @@ function searchForRooms() {
   availableRoomsDisplay.innerHTML = ``;
   let availableRooms = allRooms.map( room => room );
   allRooms.forEach( room => availableRooms.push(room));
-  let selectedDate = selectADate.value.split('-').join('/');
+  selectedDate = selectADate.value.split('-').join('/');
   show(availableRoomsDisplay);
   console.log(roomTypes.value)
 
@@ -144,31 +150,48 @@ function searchForRooms() {
       }
     });
     availableRooms = availableRoomsByType;
-  }
-  availableRooms.forEach( room => {
-    if (room.bidet === false) {
-      room['bidetConfirmation'] = 'No bidet';
-    } else {
-      room['bidetConfirmation'] = 'Has bidet';
-    }
+  };
+  if (availableRooms[0]) {
+    availableRooms.forEach( room => {
+      room['originalData'] = room;
+      if (room.bidet === false) {
+        room['bidetConfirmation'] = 'No bidet';
+      } else {
+        room['bidetConfirmation'] = 'Has bidet';
+      }
+      availableRoomsDisplay.innerHTML += `
+        <article class="available-room" id="availableRoom">
+          <i><h4>Room ${room.number}</h4></i>
+          <span class="room-type">Type: ${room.roomType}</span><br>
+          <span class="bed-number">Number of beds: ${room.numBeds}</span><br>
+          <span class="bed-size">Bed size: ${room.bedSize}</span><br>
+          <span class="bidet-confirmation"><i>${room.bidetConfirmation}</i></span><br><br>
+          <button class="book-this-room" id="${room.number}">Book this room</button>
+        </article>
+      `;
+    })
+  } else {
     availableRoomsDisplay.innerHTML += `
-      <article class="available-room" id="availableRoom">
-        <i><h4>Room ${room.number}</h4></i>
-        <span class="room-type">Type: ${room.roomType}</span><br>
-        <span class="bed-number">Number of beds: ${room.numBeds}</span><br>
-        <span class="bed-size">Bed size: ${room.bedSize}</span><br>
-        <span class="bidet-confirmation"><i>${room.bidetConfirmation}</i></span><br><br>
-        <button class="book-this-room">Book this room</button>
-      </article>
-    `;
-  })
+      <h3><center>We're sorry, there don't seem to be any available rooms matching your search.<br><br>
+      Please adjust your search options and try again.</center></h3>
+    `
+  }
 };
+
+// function login() {
+//   console.log(usernameField.value, passwordField.value);
+//   if (passwordField.value === 'test') {
+//     hide(dashboardText)
+//   }
+// }
 
 function bookRoom(event) {
   console.log(event.target);
+  console.log(event.target.parentNode);
   if (event.target.classList.contains('book-this-room')) {
     console.log('match')
-
+    let matchingRoomNumber = parseInt(event.target.id);
+    addNewBooking(50, selectedDate, matchingRoomNumber);
   }
 }
 

@@ -10,15 +10,23 @@ const bookingFormContainer = document.querySelector('#bookingFormContainer');
 const availableRoomsDisplay = document.querySelector('#availableRoomsDisplay');
 const searchOptionsContainer = document.querySelector('#searchOptionsContainer');
 const roomTypeSelect = document.querySelector('#roomTypes');
+const loginForm = document.querySelector('#loginForm');
+const usernameField = document.querySelector('#usernameField');
+const passwordField = document.querySelector('#passwordField');
+const loginButton = document.querySelector('#loginButton');
 
 const domUpdates = {
-
   dashboardContainer,
   dashboardText,
   bookingHistoryContainer,
   bookingsDisplay,
   expendituresDisplay,
-  dateSelection
+  dateSelection,
+  roomTypeSelect,
+  loginForm,
+  usernameField,
+  passwordField,
+  loginButton
 };
 
 export default domUpdates;

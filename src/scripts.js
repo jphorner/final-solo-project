@@ -167,7 +167,8 @@ function searchForRooms() {
 function bookRoom(event) {
   console.log(event.target);
   if (event.target.classList.contains('book-this-room')) {
-    console.log('nice')
+    console.log('match')
+
   }
 }
 

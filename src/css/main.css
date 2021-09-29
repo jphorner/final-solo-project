@@ -100,7 +100,7 @@ body {
   position: absolute;
   z-index: -1;
   margin-top: 1rem;
-  height: 24rem;
+  height: 22rem;
   width: 15rem;
   background-color: #bcffd7;
   opacity: 70%;
@@ -133,14 +133,35 @@ body {
 .booking-history-container .booking-history {
   border-right: 1px solid #4C4D4F;
   padding-right: 2rem;
+  overflow-y: scroll;
+}
+.booking-history-container .booking-history .bookings-display article {
+  border-bottom: 1px solid #34e2ff;
+  width: 60%;
+}
+.booking-history-container .expenditures-container {
+  overflow-y: scroll;
 }
 .booking-history-container .expenditures {
   padding-left: 2rem;
   padding-right: 2rem;
+  overflow-y: scroll;
+}
+.booking-history-container .expenditures-display {
+  overflow-y: scroll;
+}
+.booking-history-container .expenditures-display h3, .booking-history-container .expenditures-display h4 {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding: 0px;
 }
 .booking-history-container h2 {
   border-bottom: 1px solid #4C4D4F;
   padding-bottom: 0.5rem;
+}
+
+.emphasized {
+  color: #ff652d;
 }
 
 .choose-a-date {

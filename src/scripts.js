@@ -106,10 +106,6 @@ function populatePastBookings(bookings, rooms) {
       </article>
     `;
 
-    if (upcomingBookings[0]) {
-      console.log('nice');
-    }
-
     expendituresDisplay.innerHTML += `
       <article class="expenditure" id="expenditure" role="listitem" tabindex='0'>
         <i>${booking.date}</i><br>
@@ -119,16 +115,10 @@ function populatePastBookings(bookings, rooms) {
   });
 
   expendituresDisplay.innerHTML += `
-    <h3 role="list">TOTAL:</h3><br><br>
+    <h3 role="list">TOTAL:</h3><br>
     <h2 role="listitem" tabindex='0'>$${totalExpenditures}</h2>
   `
-
-  displayUpcomingBookings();
 };
-
-function displayUpcomingBookings() {
-  console.log('temp')
-}
 
 function showBookingForm() {
   domUpdates.showBookingForm();
@@ -221,7 +211,6 @@ function bookRoom(event) {
     allRooms.find( room => {
       if (room.number === matchingRoomNumber) {
         upcomingBookings.push(room);
-        console.log(upcomingBookings);
       }
     });
   }
@@ -229,8 +218,39 @@ function bookRoom(event) {
 
 function showDashboard() {
   if (loggedIn) {
+    let futureExpenditures = 0;
     domUpdates.hide(bookingFormContainer);
     domUpdates.show(dashboardContainer);
     domUpdates.show(dashboardText);
+    if (upcomingBookings[0]) {
+      bookingsDisplay.innerHTML += `
+        <h3 class="emphasized">Upcoming Bookings</h3>
+      `;
+      expendituresDisplay.innerHTML += `
+        <h3 class="emphasized">Upcoming Booking Costs</h3>
+      `
+      upcomingBookings.forEach( room => {
+        bookingsDisplay.innerHTML += `
+          <article class="upcoming-booking" id="upcomingBooking" aria-label="upcoming booking" role="listitem" tabindex='0'>
+            <h4>
+            <b>Room booked: ${room.number}</b><br><br>
+            Date booked: <i>${selectedDate}</i><br>
+            Nightly cost: <b>$${room.costPerNight}</b>
+            </h4>
+          </article>
+        `;
+        expendituresDisplay.innerHTML += `
+          <article class="expenditure" id="expenditure" role="listitem" tabindex='0'>
+            <i>${selectedDate}</i><br>
+            <b>$${room.costPerNight}</b><br><br>
+          </article>
+        `;
+        futureExpenditures += room.costPerNight;
+      })
+      expendituresDisplay.innerHTML += `
+        <h4 role="list">FUTURE BOOKING TOTAL:</h4><br>
+        <h3 role="listitem" tabindex='0'>$${futureExpenditures}</h3>
+      `
+    }
   }
 };

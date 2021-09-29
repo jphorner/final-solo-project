@@ -25,6 +25,8 @@ let loggedIn = false;
 const {
   hide,
   show,
+  displayUsernameError,
+  displayPasswordError,
   dashboardContainer,
   dashboardText,
   bookingHistoryContainer,
@@ -177,13 +179,25 @@ function searchForRooms() {
 function login() {
   event.preventDefault();
   let username = usernameField.value;
-  if (passwordField.value === 'overlook2021') {
+  let validUsername = false;
+
   currentUser = username[8] + username[9];
-  domUpdates.show(dateSelection);
-  domUpdates.show(dashboardContainer);
-  domUpdates.show(dashboardText);
-  domUpdates.hide(loginContainer);
-  loggedIn = true;
+  if (currentUser > allCustomers.length) {
+    domUpdates.displayUsernameError();
+    return;
+  } else {
+    validUsername = true;
+  };
+
+  if (passwordField.value === 'overlook2021' && validUsername) {
+    domUpdates.show(dateSelection);
+    domUpdates.show(dashboardContainer);
+    domUpdates.show(dashboardText);
+    domUpdates.hide(loginContainer);
+    loggedIn = true;
+  } else {
+    domUpdates.displayPasswordError();
+    return;
   }
 };
 

@@ -15,6 +15,8 @@ const roomTypeSelect = document.querySelector('#roomTypes');
 const loginForm = document.querySelector('#loginForm');
 const usernameField = document.querySelector('#usernameField');
 const passwordField = document.querySelector('#passwordField');
+const usernameError = document.querySelector('#usernameError');
+const passwordError = document.querySelector('#passwordError');
 const loginButton = document.querySelector('#loginButton');
 const loginContainer = document.querySelector('#loginContainer');
 const logoContainer = document.querySelector('#logoContainer');
@@ -28,6 +30,16 @@ function showBookingForm() {
   show(bookingForm);
 }
 
+function displayUsernameError() {
+  usernameError.innerHTML = ``;
+  usernameError.innerHTML += 'Unknown username';
+}
+
+function displayPasswordError() {
+  passwordError.innerHTML = ``;
+  passwordError.innerHTML += 'Invalid password';
+}
+
 function hide(element) {
   element.classList.add('hidden');
 }
@@ -39,6 +51,8 @@ function show(element) {
 const domUpdates = {
   hide,
   show,
+  displayUsernameError,
+  displayPasswordError,
   showBookingForm,
   dashboardContainer,
   dashboardText,

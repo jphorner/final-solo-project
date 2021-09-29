@@ -36,6 +36,13 @@ body {
   width: 25rem;
   padding: 1rem;
 }
+.login-container .login .username-error,
+.login-container .login .password-error {
+  font-style: italic;
+  margin-top: -1rem;
+  padding: 0.2rem;
+  color: #ffede8;
+}
 .login-container .login input {
   margin-bottom: 1rem;
 }
@@ -46,6 +53,13 @@ body {
   border-radius: 0.2rem;
   background-color: #f77347;
   cursor: pointer;
+}
+.login-container .login button:hover {
+  background-color: #f23f09;
+}
+.login-container .login button:active {
+  background-color: white;
+  color: #f23f09;
 }
 
 .logo-container {

@@ -17,6 +17,7 @@ let returnedData = [];
 let allCustomers = [];
 let allRooms = [];
 let allBookings = [];
+let upcomingBookings = [];
 let selectedDate;
 let currentUser;
 let bookings;
@@ -34,7 +35,7 @@ const {
   expendituresDisplay,
   dateSelection,
   usernameField,
-  passwordField
+  passwordField,
 } = domUpdates;
 
 window.addEventListener('load', getData);
@@ -105,6 +106,10 @@ function populatePastBookings(bookings, rooms) {
       </article>
     `;
 
+    if (upcomingBookings[0]) {
+      console.log('nice');
+    }
+
     expendituresDisplay.innerHTML += `
       <article class="expenditure" id="expenditure" role="listitem" tabindex='0'>
         <i>${booking.date}</i><br>
@@ -117,7 +122,13 @@ function populatePastBookings(bookings, rooms) {
     <h3 role="list">TOTAL:</h3><br><br>
     <h2 role="listitem" tabindex='0'>$${totalExpenditures}</h2>
   `
+
+  displayUpcomingBookings();
 };
+
+function displayUpcomingBookings() {
+  console.log('temp')
+}
 
 function showBookingForm() {
   domUpdates.showBookingForm();
@@ -206,7 +217,13 @@ function bookRoom(event) {
   if (event.target.classList.contains('book-this-room')) {
     let matchingRoomNumber = parseInt(event.target.id);
     addNewBooking(parseInt(user.id), selectedDate, matchingRoomNumber);
-    event.target.parentNode.innerHTML += `<span class="booking-confirmation">Booking confirmed!</span>`
+    event.target.parentNode.innerHTML += `<span class="booking-confirmation">Booking confirmed!</span>`;
+    allRooms.find( room => {
+      if (room.number === matchingRoomNumber) {
+        upcomingBookings.push(room);
+        console.log(upcomingBookings);
+      }
+    });
   }
 };
 

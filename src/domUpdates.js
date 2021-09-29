@@ -64,7 +64,7 @@ const domUpdates = {
   loginForm,
   usernameField,
   passwordField,
-  loginButton
+  loginButton,
 };
 
 export default domUpdates;

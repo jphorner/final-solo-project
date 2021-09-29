@@ -36,6 +36,13 @@ body {
   width: 25rem;
   padding: 1rem;
 }
+.login-container .login .username-error,
+.login-container .login .password-error {
+  font-style: italic;
+  margin-top: -1rem;
+  padding: 0.2rem;
+  color: #ffede8;
+}
 .login-container .login input {
   margin-bottom: 1rem;
 }
@@ -47,6 +54,13 @@ body {
   background-color: #f77347;
   cursor: pointer;
 }
+.login-container .login button:hover {
+  background-color: #f23f09;
+}
+.login-container .login button:active {
+  background-color: white;
+  color: #f23f09;
+}
 
 .logo-container {
   display: flex;
@@ -56,6 +70,7 @@ body {
   height: 5rem;
   width: 5rem;
   object-fit: contain;
+  cursor: pointer;
 }
 .logo-container img {
   position: static;
@@ -75,10 +90,20 @@ body {
 }
 .logo-container .slogan {
   position: absolute;
-  right: 5%;
+  right: 4%;
   color: #4C4D4F;
   font-family: "Bebas Neue", cursive;
   margin-bottom: 2rem;
+}
+
+.green-accent {
+  position: absolute;
+  z-index: -1;
+  margin-top: 1rem;
+  height: 22rem;
+  width: 15rem;
+  background-color: #bcffd7;
+  opacity: 70%;
 }
 
 .dashboard-text h1 {
@@ -108,14 +133,35 @@ body {
 .booking-history-container .booking-history {
   border-right: 1px solid #4C4D4F;
   padding-right: 2rem;
+  overflow-y: scroll;
+}
+.booking-history-container .booking-history .bookings-display article {
+  border-bottom: 1px solid #34e2ff;
+  width: 60%;
+}
+.booking-history-container .expenditures-container {
+  overflow-y: scroll;
 }
 .booking-history-container .expenditures {
   padding-left: 2rem;
   padding-right: 2rem;
+  overflow-y: scroll;
+}
+.booking-history-container .expenditures-display {
+  overflow-y: scroll;
+}
+.booking-history-container .expenditures-display h3, .booking-history-container .expenditures-display h4 {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding: 0px;
 }
 .booking-history-container h2 {
   border-bottom: 1px solid #4C4D4F;
   padding-bottom: 0.5rem;
+}
+
+.emphasized {
+  color: #ff652d;
 }
 
 .choose-a-date {
@@ -221,6 +267,12 @@ body {
 }
 .book-this-room:active {
   background-color: #ff652d;
+}
+
+.booking-confirmation {
+  margin-left: 1rem;
+  color: #ff652d;
+  font-style: italic;
 }
 
 footer {

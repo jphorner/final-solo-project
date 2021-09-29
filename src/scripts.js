@@ -17,11 +17,17 @@ let returnedData = [];
 let allCustomers = [];
 let allRooms = [];
 let allBookings = [];
+let upcomingBookings = [];
 let selectedDate;
 let currentUser;
 let bookings;
+let loggedIn = false;
 
 const {
+  hide,
+  show,
+  displayUsernameError,
+  displayPasswordError,
   dashboardContainer,
   dashboardText,
   bookingHistoryContainer,
@@ -29,14 +35,15 @@ const {
   expendituresDisplay,
   dateSelection,
   usernameField,
-  passwordField
+  passwordField,
 } = domUpdates;
 
 window.addEventListener('load', getData);
-dateSelection.addEventListener('click', bookARoom);
+dateSelection.addEventListener('click', showBookingForm);
 roomSearch.addEventListener('click', searchForRooms);
 availableRoomsDisplay.addEventListener('click', bookRoom);
 loginButton.addEventListener('click', login);
+logoContainer.addEventListener('click', showDashboard);
 
 /// FUNCTIONS ///
 
@@ -49,7 +56,7 @@ function getData() {
     ]
   )
   .then( data => parseData(data))
-}
+};
 
 function parseData(data) {
   let customerData = data[0].customers;
@@ -66,7 +73,7 @@ function parseData(data) {
   })
   instantiateClasses();
   return;
-}
+};
 
 function instantiateClasses() {
   let customers = allCustomers.map((customer) => {
@@ -79,11 +86,10 @@ function instantiateClasses() {
     return new Booking(booking.id, booking.userID, booking.date, booking.roomNumber)
   })
   populatePastBookings(bookings, rooms);
-}
+};
 
 function populatePastBookings(bookings, rooms) {
   bookingsDisplay.innerHTML = ``;
-  let testBooking1 = {id: "5fwrgu4i7k55hl6yl", userID: 44, date: "2020/01/30", roomNumber: 24, roomServiceCharges: null}
   let pastBookings = bookings.filter( booking => booking.date < "2020/02/01");
   let bookingsToPopulate = [pastBookings[0], pastBookings[1], pastBookings[2], pastBookings[3]];
   let totalExpenditures = 0;
@@ -91,51 +97,45 @@ function populatePastBookings(bookings, rooms) {
     let matchingRoom = rooms.find( room => room.number === booking.roomNumber );
     totalExpenditures += matchingRoom.costPerNight;
     bookingsDisplay.innerHTML += `
-      <article class="past-booking" id="pastBooking">
+      <article class="past-booking" id="pastBooking" aria-label="past booking" role="listitem" tabindex='0'>
         <h4>
         <b>Room booked: ${booking.roomNumber}</b><br><br>
         Date booked: <i>${booking.date}</i><br>
-        Nightly cost: <b>${matchingRoom.costPerNight}</b>
+        Nightly cost: <b>$${matchingRoom.costPerNight}</b>
         </h4>
       </article>
     `;
 
     expendituresDisplay.innerHTML += `
-      <article class="expenditure" id="expenditure">
+      <article class="expenditure" id="expenditure" role="listitem" tabindex='0'>
         <i>${booking.date}</i><br>
-        <b>${matchingRoom.costPerNight}</b><br><br>
+        <b>$${matchingRoom.costPerNight}</b><br><br>
       </article>
     `
   });
 
-    expendituresDisplay.innerHTML += `
-      <h3>TOTAL:</h3><br><br>
-      <h2>$${totalExpenditures}</h2>
-    `
-}
+  expendituresDisplay.innerHTML += `
+    <h3 role="list">TOTAL:</h3><br>
+    <h2 role="listitem" tabindex='0'>$${totalExpenditures}</h2>
+  `
+};
 
-function bookARoom() {
-  hide(dashboardContainer);
-  hide(dashboardText);
-  hide(availableRoomsDisplay);
-  show(searchOptionsContainer);
-  show(bookingForm);
-}
+function showBookingForm() {
+  domUpdates.showBookingForm();
+};
 
 function searchForRooms() {
-  hide(searchOptionsContainer);
+  domUpdates.hide(searchOptionsContainer);
   availableRoomsDisplay.innerHTML = ``;
   let availableRooms = allRooms.map( room => room );
   allRooms.forEach( room => availableRooms.push(room));
   selectedDate = selectADate.value.split('-').join('/');
   show(availableRoomsDisplay);
-  console.log(roomTypes.value)
 
   allBookings.forEach( booking => {
     if ( booking.date === selectedDate ) {
       availableRooms.filter( room => {
         if (room.number === booking.roomNumber) {
-          console.log('match', booking.roomNumber);
           availableRooms.splice(availableRooms.indexOf(room), 1);
         }
       }
@@ -159,7 +159,7 @@ function searchForRooms() {
         room['bidetConfirmation'] = 'Has bidet';
       }
       availableRoomsDisplay.innerHTML += `
-        <article class="available-room" id="availableRoom">
+        <article class="available-room" id="availableRoom" role="listitem">
           <i><h4>Room ${room.number}</h4></i>
           <span class="room-type">Type: ${room.roomType}</span><br>
           <span class="bed-number">Number of beds: ${room.numBeds}</span><br>
@@ -180,30 +180,77 @@ function searchForRooms() {
 function login() {
   event.preventDefault();
   let username = usernameField.value;
-  if (passwordField.value === 'overlook2021') {
+  let validUsername = false;
+
   currentUser = username[8] + username[9];
-  console.log(currentUser);
-  show(dateSelection);
-  show(dashboardContainer);
-  show(dashboardText);
-  hide(loginContainer);
+  if (currentUser > allCustomers.length) {
+    domUpdates.displayUsernameError();
+    return;
+  } else {
+    validUsername = true;
+  };
+
+  if (passwordField.value === 'overlook2021' && validUsername) {
+    domUpdates.show(dateSelection);
+    domUpdates.show(dashboardContainer);
+    domUpdates.show(dashboardText);
+    domUpdates.hide(loginContainer);
+    loggedIn = true;
+  } else {
+    domUpdates.displayPasswordError();
+    return;
   }
-}
+};
 
 function bookRoom(event) {
-  console.log(event.target);
-  console.log(event.target.parentNode);
+  let user = new Customer(currentUser, 'Customer');
   if (event.target.classList.contains('book-this-room')) {
-    console.log('match')
     let matchingRoomNumber = parseInt(event.target.id);
-    addNewBooking(parseInt(currentUser), selectedDate, matchingRoomNumber);
+    addNewBooking(parseInt(user.id), selectedDate, matchingRoomNumber);
+    event.target.parentNode.innerHTML += `<span class="booking-confirmation">Booking confirmed!</span>`;
+    allRooms.find( room => {
+      if (room.number === matchingRoomNumber) {
+        upcomingBookings.push(room);
+      }
+    });
   }
-}
+};
 
-function hide(element) {
-  element.classList.add('hidden');
-}
-
-function show(element) {
-  element.classList.remove('hidden');
-}
+function showDashboard() {
+  if (loggedIn) {
+    let futureExpenditures = 0;
+    domUpdates.hide(bookingFormContainer);
+    domUpdates.show(dashboardContainer);
+    domUpdates.show(dashboardText);
+    if (upcomingBookings[0]) {
+      bookingsDisplay.innerHTML += `
+        <h3 class="emphasized">Upcoming Bookings</h3>
+      `;
+      expendituresDisplay.innerHTML += `
+        <h3 class="emphasized">Upcoming Booking Costs</h3>
+      `
+      upcomingBookings.forEach( room => {
+        bookingsDisplay.innerHTML += `
+          <article class="upcoming-booking" id="upcomingBooking" aria-label="upcoming booking" role="listitem" tabindex='0'>
+            <h4>
+            <b>Room booked: ${room.number}</b><br><br>
+            Date booked: <i>${selectedDate}</i><br>
+            Nightly cost: <b>$${room.costPerNight}</b>
+            </h4>
+          </article>
+        `;
+        expendituresDisplay.innerHTML += `
+          <article class="expenditure" id="expenditure" role="listitem" tabindex='0'>
+            <i>${selectedDate}</i><br>
+            <b>$${room.costPerNight}</b><br><br>
+          </article>
+        `;
+        futureExpenditures += room.costPerNight;
+      })
+      expendituresDisplay.innerHTML += `
+        <h4 role="list">FUTURE BOOKING TOTAL:</h4><br>
+        <h3 role="listitem" tabindex='0'>$${futureExpenditures}</h3>
+      `
+    }
+  }
+};

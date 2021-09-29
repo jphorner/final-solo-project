@@ -43,6 +43,14 @@ body {
     width: 25rem;
     padding: 1rem;
 
+    .username-error,
+    .password-error {
+      font-style: italic;
+      margin-top: -1rem;
+      padding: .2rem;
+      color: #ffede8;
+    }
+
     input {
       margin-bottom: 1rem;
     }
@@ -54,6 +62,15 @@ body {
       border-radius: .2rem;
       background-color: #f77347;
       cursor: pointer;
+
+      &:hover {
+        background-color: #f23f09;
+      }
+
+      &:active {
+        background-color: white;
+        color: #f23f09;
+      }
     }
   }
 }
@@ -66,6 +83,7 @@ body {
   height: 5rem;
   width: 5rem;
   object-fit: contain;
+  cursor: pointer;
 
   img {
     position: static;
@@ -87,11 +105,21 @@ body {
 
   .slogan {
     position: absolute;
-    right: 5%;
+    right: 4%;
     color: $turing-gray;
     font-family: $secondary-font;
     margin-bottom: 2rem;
   }
+}
+
+.green-accent {
+  position: absolute;
+  z-index: -1;
+  margin-top: 1rem;
+  height: 22rem;
+  width: 15rem;
+  background-color: #bcffd7;
+  opacity: 70%;
 }
 
 .dashboard-text {
@@ -118,17 +146,44 @@ body {
   .booking-history {
     border-right: 1px solid $turing-gray;
     padding-right: 2rem;
+    overflow-y: scroll;
+
+    .bookings-display {
+      article {
+        border-bottom: 1px solid $secondary-background;
+        width: 60%;
+      }
+    }
+  }
+
+  .expenditures-container {
+    overflow-y: scroll;
   }
 
   .expenditures {
     padding-left: 2rem;
     padding-right: 2rem;
+    overflow-y: scroll;
+  }
+
+  .expenditures-display {
+    overflow-y: scroll;
+
+    h3, h4 {
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+      padding: 0px;
+    }
   }
 
   h2 {
     border-bottom: 1px solid $turing-gray;
     padding-bottom: .5rem;
   }
+}
+
+.emphasized {
+  color: $blood-orange;
 }
 
 .choose-a-date {
@@ -237,6 +292,12 @@ body {
   &:active {
     background-color: $blood-orange;
   }
+}
+
+.booking-confirmation {
+  margin-left: 1rem;
+  color: $blood-orange;
+  font-style: italic;
 }
 
 footer {

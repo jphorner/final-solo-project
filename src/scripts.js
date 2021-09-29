@@ -19,6 +19,7 @@ let allRooms = [];
 let allBookings = [];
 let selectedDate;
 let currentUser;
+let bookings;
 
 const {
   dashboardContainer,
@@ -74,7 +75,7 @@ function instantiateClasses() {
   let rooms = allRooms.map((room) => {
     return new Room(room.number, room.roomType, room.bedSize, room.numBeds, room.costPerNight);
   });
-  let bookings = allBookings.map((booking) => {
+  bookings = allBookings.map((booking) => {
     return new Booking(booking.id, booking.userID, booking.date, booking.roomNumber)
   })
   populatePastBookings(bookings, rooms);
@@ -112,8 +113,6 @@ function populatePastBookings(bookings, rooms) {
       <h2>$${totalExpenditures}</h2>
     `
 }
-
-populatePastBookings();
 
 function bookARoom() {
   hide(dashboardContainer);
@@ -178,12 +177,18 @@ function searchForRooms() {
   }
 };
 
-// function login() {
-//   console.log(usernameField.value, passwordField.value);
-//   if (passwordField.value === 'test') {
-//     hide(dashboardText)
-//   }
-// }
+function login() {
+  event.preventDefault();
+  let username = usernameField.value;
+  if (passwordField.value === 'overlook2021') {
+  currentUser = username[8] + username[9];
+  console.log(currentUser);
+  show(dateSelection);
+  show(dashboardContainer);
+  show(dashboardText);
+  hide(loginContainer);
+  }
+}
 
 function bookRoom(event) {
   console.log(event.target);
@@ -191,7 +196,7 @@ function bookRoom(event) {
   if (event.target.classList.contains('book-this-room')) {
     console.log('match')
     let matchingRoomNumber = parseInt(event.target.id);
-    addNewBooking(50, selectedDate, matchingRoomNumber);
+    addNewBooking(parseInt(currentUser), selectedDate, matchingRoomNumber);
   }
 }
 

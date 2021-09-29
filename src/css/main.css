@@ -88,8 +88,10 @@ body {
 
 .choose-a-date {
   position: absolute;
-  right: 5%;
+  right: 4%;
   top: 12%;
+  margin: 0px;
+  padding: 0px;
 }
 .choose-a-date button {
   border: 1px solid #f4f4f4;

@@ -14,6 +14,7 @@ const loginForm = document.querySelector('#loginForm');
 const usernameField = document.querySelector('#usernameField');
 const passwordField = document.querySelector('#passwordField');
 const loginButton = document.querySelector('#loginButton');
+const loginContainer = document.querySelector('#loginContainer');
 
 const domUpdates = {
   dashboardContainer,

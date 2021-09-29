@@ -66,6 +66,7 @@ body {
   height: 5rem;
   width: 5rem;
   object-fit: contain;
+  cursor: pointer;
 
   img {
     position: static;
@@ -87,11 +88,21 @@ body {
 
   .slogan {
     position: absolute;
-    right: 5%;
+    right: 4%;
     color: $turing-gray;
     font-family: $secondary-font;
     margin-bottom: 2rem;
   }
+}
+
+.green-accent {
+  position: absolute;
+  z-index: -1;
+  margin-top: 1rem;
+  height: 24rem;
+  width: 15rem;
+  background-color: #bcffd7;
+  opacity: 70%;
 }
 
 .dashboard-text {
@@ -237,6 +248,12 @@ body {
   &:active {
     background-color: $blood-orange;
   }
+}
+
+.booking-confirmation {
+  margin-left: 1rem;
+  color: $blood-orange;
+  font-style: italic;
 }
 
 footer {

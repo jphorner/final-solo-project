@@ -1,3 +1,5 @@
+import currentUser from './scripts';
+
 const dashboardContainer = document.querySelector('#dashboardContainer');
 const dashboardText = document.querySelector('#dashboardText');
 const bookingHistoryContainer = document.querySelector('#bookingHistoryContainer');
@@ -15,8 +17,29 @@ const usernameField = document.querySelector('#usernameField');
 const passwordField = document.querySelector('#passwordField');
 const loginButton = document.querySelector('#loginButton');
 const loginContainer = document.querySelector('#loginContainer');
+const logoContainer = document.querySelector('#logoContainer');
+
+function showBookingForm() {
+  hide(dashboardContainer);
+  hide(dashboardText);
+  hide(availableRoomsDisplay);
+  show(searchOptionsContainer);
+  show(bookingFormContainer);
+  show(bookingForm);
+}
+
+function hide(element) {
+  element.classList.add('hidden');
+}
+
+function show(element) {
+  element.classList.remove('hidden');
+}
 
 const domUpdates = {
+  hide,
+  show,
+  showBookingForm,
   dashboardContainer,
   dashboardText,
   bookingHistoryContainer,

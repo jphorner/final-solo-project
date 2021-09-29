@@ -10,8 +10,7 @@
   <title>Turing Travel</title>
 </head>
 <body>
-  <!-- <img class="background-image" src="../images/pexels-background-jaime-reimer.jpg"> -->
-  <div class="logo-container">
+  <div class="logo-container" id="logoContainer">
     <img src="./images/turing-logo.png" alt="turing logo">
     <h1 class="logo-text" id="logoText">Travel</h1>
     <h1 class="slogan" id="slogan">Make your getaway count.</h1>
@@ -21,13 +20,14 @@
       <section class="login">
         <form class="login-form" id="loginForm">
           <label for="username-field"></label>
-          <input type="text" id="usernameField" name="username-field" placeholder="Username" value="customer50"><br>
+          <input type="text" id="usernameField" aria-label="username field" name="username-field" placeholder="Username" value="customer50"><br>
           <label for="password-field"></label>
-          <input type="text" id="passwordField" name="password-field" placeholder="Password"><br>
+          <input type="text" id="passwordField" aria-label="password field" name="password-field" placeholder="Password"><br>
           <button class="login-button" id="loginButton"><b>LOGIN</b></button>
         </form>
       </section>
     </section>
+    <div class="green-accent"></div>
     <h1 class="login-quip">Get ready for the ultimate recharge.</h1>
   </div>
   <div class="choose-a-date">
@@ -50,7 +50,7 @@
         </select><br><br>
         <button class="room-search" id="roomSearch">Search for Rooms</button>
       </div>
-      <div class="available-rooms-display hidden" id="availableRoomsDisplay"></div>
+      <div class="available-rooms-display hidden" role="list" id="availableRoomsDisplay"></div>
     </section>
   </div>
   <div class="dashboard-text hidden" id="dashboardText">
@@ -60,15 +60,15 @@
     <section class="dashboard" id="dashboard">
       <header class="dashboard-header" id="dashboard">
       </header>
-      <div class="booking-info-container">
+      <div class="booking-info-container" role="list">
         <div class="booking-history-container" id="bookingHistoryContainer">
-          <section class="booking-history" id="bookingHistory">
+          <section class="booking-history" aria-label="booking history" role="list" tabindex = '0' id="bookingHistory">
             <h2>Booking History</h2>
             <section class="bookings-display" id="bookingsDisplay">
             </section>
           </section>
           <div class="expenditures-container" id="expendituresContainer">
-            <section class="expenditures" id="expenditures">
+            <section class="expenditures" aria-label="expenditures" role="list" tabindex = '0' id="expenditures">
               <h2>Expenditures</h2>
               <section class="expenditures-display" id="expendituresDisplay">
             </section>

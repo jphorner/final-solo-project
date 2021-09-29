@@ -23,17 +23,16 @@ const {
   dashboardText,
   bookingHistoryContainer,
   bookingsDisplay,
+  expendituresDisplay,
+  dateSelection
 } = domUpdates;
 
 window.addEventListener('load', getData);
-// window.addEventListener('load', generatePastBookings);
+dateSelection.addEventListener('click', bookARoom);
+roomSearch.addEventListener('click', searchForRooms);
+availableRoomsDisplay.addEventListener('click', bookRoom);
 
-console.log('This is the JavaScript entry file - your code begins here.');
-
-// let customerData = null;
-// // console.log(customerData)
-// let roomData;
-// let bookingData;
+/// FUNCTIONS ///
 
 function getData() {
   let retrievedData = Promise.all(
@@ -47,7 +46,6 @@ function getData() {
 }
 
 function parseData(data) {
-  // console.log(data)
   let customerData = data[0].customers;
   customerData.forEach( customer => {
     allCustomers.push(customer);
@@ -64,23 +62,16 @@ function parseData(data) {
   return;
 }
 
-console.log('CUSTOMERS: ', allCustomers);
-console.log('ROOMS: ', allRooms);
-console.log('BOOKINGS: ', allBookings);
-
 function instantiateClasses() {
   let customers = allCustomers.map((customer) => {
     return new Customer(customer.id, customer.name);
   });
-  // console.log(customers);
   let rooms = allRooms.map((room) => {
     return new Room(room.number, room.roomType, room.bedSize, room.numBeds, room.costPerNight);
   });
-  // console.log(rooms);
   let bookings = allBookings.map((booking) => {
     return new Booking(booking.id, booking.userID, booking.date, booking.roomNumber)
   })
-  // console.log(bookings);
   populatePastBookings(bookings, rooms);
 }
 
@@ -112,17 +103,78 @@ function populatePastBookings(bookings, rooms) {
 
     expendituresDisplay.innerHTML += `
       <h3>TOTAL:</h3><br><br>
-      <h2>${totalExpenditures}</h2>
+      <h2>$${totalExpenditures}</h2>
     `
 }
 
-// console.log('TEST: ', allBookings);
 populatePastBookings();
 
-// To add to domUpdates.js:
-// function generatePastBookings() {
-//   let randomBooking1 = Math.floor(Math.random() * bookingData.length);
-//   // let randomBooking2 = Math.floor(Math.random() * promises[2].bookings.length);
-//   // let randomBooking3 = Math.floor(Math.random() * promises[2].bookings.length);
-//   console.log(randomBooking1);
-// }
+function bookARoom() {
+  hide(dashboardContainer);
+  hide(dashboardText);
+  hide(availableRoomsDisplay);
+  show(searchOptionsContainer);
+  show(bookingForm);
+}
+
+function searchForRooms() {
+  hide(searchOptionsContainer);
+  availableRoomsDisplay.innerHTML = ``;
+  let availableRooms = allRooms.map( room => room );
+  allRooms.forEach( room => availableRooms.push(room));
+  let selectedDate = selectADate.value.split('-').join('/');
+  show(availableRoomsDisplay);
+  console.log(roomTypes.value)
+
+  allBookings.forEach( booking => {
+    if ( booking.date === selectedDate ) {
+      availableRooms.filter( room => {
+        if (room.number === booking.roomNumber) {
+          console.log('match', booking.roomNumber);
+          availableRooms.splice(availableRooms.indexOf(room), 1);
+        }
+      }
+    )}
+  });
+  if (roomTypes.value !== 'any') {
+    let availableRoomsByType = [];
+    availableRooms.filter( room => {
+      if (room.roomType === roomTypes.value) {
+        availableRoomsByType.push(room);
+      }
+    });
+    availableRooms = availableRoomsByType;
+  }
+  availableRooms.forEach( room => {
+    if (room.bidet === false) {
+      room['bidetConfirmation'] = 'No bidet';
+    } else {
+      room['bidetConfirmation'] = 'Has bidet';
+    }
+    availableRoomsDisplay.innerHTML += `
+      <article class="available-room" id="availableRoom">
+        <i><h4>Room ${room.number}</h4></i>
+        <span class="room-type">Type: ${room.roomType}</span><br>
+        <span class="bed-number">Number of beds: ${room.numBeds}</span><br>
+        <span class="bed-size">Bed size: ${room.bedSize}</span><br>
+        <span class="bidet-confirmation"><i>${room.bidetConfirmation}</i></span><br><br>
+        <button class="book-this-room">Book this room</button>
+      </article>
+    `;
+  })
+};
+
+function bookRoom(event) {
+  console.log(event.target);
+  if (event.target.classList.contains('book-this-room')) {
+    console.log('nice')
+  }
+}
+
+function hide(element) {
+  element.classList.add('hidden');
+}
+
+function show(element) {
+  element.classList.remove('hidden');
+}

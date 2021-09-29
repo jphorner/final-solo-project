@@ -1,7 +1,7 @@
 /* This is an example of how to import a partial scss file*/
 html {
   z-index: 1;
-  height: 93vh;
+  height: 95vh;
   border-top: 1rem solid #34e2ff;
   border-bottom: 1rem solid #34e2ff;
 }
@@ -12,6 +12,7 @@ body {
   margin-left: 1rem;
   margin-right: 1rem;
   background: #f9f9f9;
+  background-color: #f4f4f4;
   font-family: "Questrial", sans-serif;
 }
 
@@ -50,6 +51,8 @@ body {
 
 .dashboard-text h1 {
   margin: 0px;
+  margin-top: 0.5rem;
+  margin-left: 4rem;
   margin-bottom: 0.5rem;
 }
 
@@ -83,6 +86,109 @@ body {
   padding-bottom: 0.5rem;
 }
 
+.choose-a-date {
+  position: absolute;
+  right: 5%;
+  top: 12%;
+}
+.choose-a-date button {
+  border: 1px solid #f4f4f4;
+  border-radius: 0.3rem;
+  background-color: #f4f4f4;
+  padding: 0px;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  cursor: pointer;
+}
+.choose-a-date button:hover {
+  border: 1px solid #ff652d;
+}
+.choose-a-date button:active {
+  background-color: #ff652d;
+  border: 0px;
+}
+.choose-a-date button:active h2 {
+  color: white;
+}
+.choose-a-date h2 {
+  color: #ff652d;
+}
+
+.booking-form-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.booking-form {
+  padding: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 0rem;
+  padding: 1rem;
+  padding-left: 2rem;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px #4C4D4F;
+  height: 36rem;
+  width: 55rem;
+  margin-top: 3rem;
+  background-color: #fff9f7;
+}
+
+.room-search {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  color: white;
+  background-color: #ff652d;
+  border: 0px;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+.room-search:hover {
+  background-color: #09a6b7;
+}
+.room-search:active {
+  background-color: #0fe5ff;
+  border: 0px;
+}
+
+.available-rooms-display {
+  justify-content: center;
+  margin: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 1px solid black;
+  background-color: #fefefe;
+  height: 90%;
+  width: 90%;
+  overflow-y: scroll;
+}
+
+.available-room {
+  background-color: #d3faff;
+  padding: 0.8rem;
+  padding-top: 0.2rem;
+  padding-bottom: 1rem;
+  margin: 0.3rem;
+}
+
+.book-this-room {
+  border: 0px;
+  border-radius: 0.3rem;
+  padding: 0.4rem;
+  color: white;
+  background-color: #14aebc;
+  cursor: pointer;
+}
+.book-this-room:hover {
+  background-color: #067e89;
+}
+.book-this-room:active {
+  background-color: #ff652d;
+}
+
 footer {
   position: static;
   height: 1rem;
@@ -92,6 +198,10 @@ footer {
 
 .dyslexic {
   font-family: Helvetica;
+}
+
+.hidden {
+  display: none;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -5,8 +5,20 @@ $secondary-background: #34e2ff;
 // COLORS:
 $turing-gray: #4C4D4F;
   // To match Turing logo
+$blood-orange: #ff652d;
 
 
 // FONTS:
 $primary-font: 'Questrial', sans-serif;
 $secondary-font: 'Bebas Neue', cursive;
+
+// LAYOUTS:
+@mixin box() {
+  margin: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 0rem;
+  padding: 1rem;
+  padding-left: 2rem;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px $turing-gray;
+}

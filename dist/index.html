@@ -17,6 +17,29 @@
     <h1 class="logo-text" id="logoText">Travel</h1>
     <h1 class="slogan" id="slogan">Make your getaway count.</h1>
   </div>
+  <div class="choose-a-date">
+    <button class="date-selection" id="dateSelection"><h2>Book a Room 📆</h2></button>
+  </div>
+  <div class="booking-form-container" id="bookingFormContainer">
+    <section class="booking-form hidden" id="bookingForm">
+      <div class="search-options-container" id="searchOptionsContainer">
+        <label for="Date selection"><b>Select a Date:</b></label><br>
+        <input type="date" id="selectADate" name="trip-start"
+           value="2020-01-01"
+           min="2020-01-01" max="2020-12-31"><br><br><br>
+        <label for="room-types">Filter rooms by type <i>(optional)</i></label><br><br>
+        <select name="room types" id="roomTypes">
+          <option value="any">Any</option>
+          <option value="residential suite">Residential Suite</option>
+          <option value="suite">Suite</option>
+          <option value="single room">Single Room</option>
+          <option value="junior suite">Junior Suite</option>
+        </select><br><br>
+        <button class="room-search" id="roomSearch">Search for Rooms</button>
+      </div>
+      <div class="available-rooms-display hidden" id="availableRoomsDisplay"></div>
+    </section>
+  </div>
   <div class="dashboard-text" id="dashboardText">
     <h1>Dashboard</h1>
   </div>

@@ -12,8 +12,40 @@ body {
   margin-left: 1rem;
   margin-right: 1rem;
   background: #f9f9f9;
-  background-color: #f4f4f4;
+  background-color: #f9f9f9;
   font-family: "Questrial", sans-serif;
+}
+
+.login-container {
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.login-container .login-quip {
+  color: #ff652d;
+  font-family: "Bebas Neue", cursive;
+  position: absolute;
+  top: 54%;
+}
+.login-container .login {
+  flex-direction: column;
+  justify-content: center;
+  background-color: #1bc1d3;
+  width: 25rem;
+  padding: 1rem;
+}
+.login-container .login input {
+  margin-bottom: 1rem;
+}
+.login-container .login button {
+  padding: 0.4rem 3.45rem 0.4rem 3.45rem;
+  color: white;
+  border: 0px;
+  border-radius: 0.2rem;
+  background-color: #f77347;
+  cursor: pointer;
 }
 
 .logo-container {
@@ -88,13 +120,15 @@ body {
 
 .choose-a-date {
   position: absolute;
-  right: 5%;
+  right: 4%;
   top: 12%;
+  margin: 0px;
+  padding: 0px;
 }
 .choose-a-date button {
   border: 1px solid #f4f4f4;
   border-radius: 0.3rem;
-  background-color: #f4f4f4;
+  background-color: #efeded;
   padding: 0px;
   padding-left: 0.8rem;
   padding-right: 0.8rem;

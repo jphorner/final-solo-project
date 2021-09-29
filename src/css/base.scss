@@ -18,8 +18,44 @@ body {
   margin-left: 1rem;
   margin-right: 1rem;
   background: $primary-background;
-  background-color: #f4f4f4;
+  background-color: #f9f9f9;
   font-family: $primary-font;
+}
+
+.login-container {
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .login-quip {
+    color: $blood-orange;
+    font-family: $secondary-font;
+    position: absolute;
+    top: 54%;
+  }
+
+  .login {
+    flex-direction: column;
+    justify-content: center;
+    background-color: #1bc1d3;
+    width: 25rem;
+    padding: 1rem;
+
+    input {
+      margin-bottom: 1rem;
+    }
+
+    button {
+      padding: .4rem 3.45rem .4rem 3.45rem;
+      color: white;
+      border: 0px;
+      border-radius: .2rem;
+      background-color: #f77347;
+      cursor: pointer;
+    }
+  }
 }
 
 .logo-container {
@@ -97,13 +133,15 @@ body {
 
 .choose-a-date {
   position: absolute;
-  right: 5%;
+  right: 4%;
   top: 12%;
+  margin: 0px;
+  padding: 0px;
 
   button {
     border: 1px solid #f4f4f4;
     border-radius: .3rem;
-    background-color: #f4f4f4;
+    background-color: #efeded;
     padding: 0px;
     padding-left: .8rem;
     padding-right: .8rem;
